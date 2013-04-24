@@ -37,6 +37,6 @@ def readImg(im,num):
                 sum = sum+1
             if data[(i+1)*num+1]==0:
                 sum = sum+1
-        sourcedata.append(sum)
+            sourcedata.append(sum)
     return sourcedata
     
