@@ -18,7 +18,7 @@ v6 =[0,0,0,0,0,1,0,0,0,0]
 v7 =[0,0,0,0,0,0,1,0,0,0]
 v8 =[0,0,0,0,0,0,0,1,0,0]
 v9 =[0,0,0,0,0,0,0,0,1,0]
-
+O =[v0,v1,v2,v3,v4,v5,v6,v7,v8,v9]
 STUDY_SPEED = 0.3
 LNum =[256,64,10]
 D = []
@@ -64,13 +64,23 @@ def compute_gradient():
             for j in range(LNum(layer-1)):
                 w_temp1 = W[layer][i*LNum(layer-1)+j]
                 W[layer][i*LNum(layer-1)+j]
+
 def update_weights():
     for layer in range(1,len(LNum)):
         for i in range(LNum(layer)):
             for j in range(LNum(layer-1)):
                 w_temp1 = W[layer][i*LNum(layer-1)+j]
                 W[layer][i*LNum(layer-1)+j]=W[layer][i*LNum(layer-1)+j]-STUDY_SPEED*
-                  
+def sigmoid(x):
+    return 1/(1+math.exp(-x))  
+
+def error(x):
+    sum = 0
+    num = LNum[len(LNum)-1]
+    for i in range(num):
+        sum = sum+math.pow(math.fabs(O[x][i]-D[len(LNum)-1][i]), 2) 
+    return sum
+            
 def train():
     
 if __name__ == '__main__':
