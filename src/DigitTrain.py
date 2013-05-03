@@ -20,11 +20,13 @@ v8 =[0,0,0,0,0,0,0,1,0,0]
 v9 =[0,0,0,0,0,0,0,0,1,0]
 O =[v0,v1,v2,v3,v4,v5,v6,v7,v8,v9]
 STUDY_SPEED = 0.3
+ER=0.01
 LNum =[256,64,10]
 D = []
 W = []
 wt = []
 input = []
+out = []
 
 def read():
     for i in range(10):
@@ -78,7 +80,12 @@ def error(x):
     sum = 0
     num = LNum[len(LNum)-1]
     for i in range(num):
-        sum = sum+math.pow(math.fabs(O[x][i]-D[len(LNum)-1][i]), 2) 
+        temp=D[len(LNum)-1]
+        for j in range(len(temp)):
+            num = temp[j]
+            x = sigmoid(num)>0?1:0;
+            out.append(x)
+        sum = sum+math.pow(math.fabs(O[x][i]-out[i]), 2) 
     return sum
             
 def train():
